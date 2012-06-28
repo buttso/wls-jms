@@ -84,12 +84,13 @@ public class PublisherServlet extends HttpServlet {
 //                sender.send(queue, msg);
 //                printMessage(out, msg);
 
-                // Now use CDI managed resources as a test               
-                msg = orderSession.createTextMessage(String.format("CDI approach [%s]", ++cdi));
+                // Now use CDI managed resources as a test   
+                String message = String.format("CDI approach [%s]", ++cdi);
+                msg = orderSession.createTextMessage(message);
                 producer.send(msg);                
                 
                 //jmsBean.publishMessage(String.format("jmsBean approach [%s]", ++cdi));
-                //printMessage(out, msg);                
+                printMessage(out, msg);                
 
 
             } catch (JMSException ex) {
